@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {database} from './firebase';
+import { database } from './firebase';
 import './App.css';
 
 class App extends Component {
@@ -9,6 +9,13 @@ class App extends Component {
 			data: null
 		};
 	}
+
+	componentDidMount() {
+		database.ref('/').on('value', () => {
+			console.log('THE DATA CHANGED!');
+		});
+	}
+
 	render() {
 		return (
 			<div className='App'>
