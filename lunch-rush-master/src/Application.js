@@ -22,15 +22,20 @@ class Application extends Component {
 	}
 
 	render() {
-    const {currentUser} = this.state;
+		const { currentUser } = this.state;
 		return (
 			<div className='Application'>
 				<header className='Application--header'>
 					<h1>Lunch Rush</h1>
 				</header>
 				<div>
-          {!currentUser && <SignIn />}
-          {currentUser && <CurrentUser user={currentUser}/>}
+					{!currentUser && <SignIn />}
+					{currentUser && (
+						<div>
+							<NewRestaurant />
+							<CurrentUser user={currentUser} />
+						</div>
+					)}
 				</div>
 			</div>
 		);
