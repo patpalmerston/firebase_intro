@@ -9,12 +9,18 @@ class App extends Component {
 			data: null,
 			newData: ''
 		};
+		// arbitraty name
+		this.dataRef = null;
+
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
 	componentDidMount() {
-		database.ref('/').on('value', snapshot => {
+		this.dataRef = database.ref();
+
+		this.dataRef.on('value', snapshot => {
+			console.log('child_added', snapshot.val());
 			this.setState({
 				data: snapshot.val()
 			});
@@ -30,7 +36,9 @@ class App extends Component {
 
 	handleSubmit(event) {
 		event.preventDefault();
-		database.ref('/AMAZINGNEWDATA')
+		this.dataRef = database
+			.ref('/wowowow/lolol/hehehe')
+			// database.ref('/AMAZINGNEWDATA')
 			// .ref()
 			// .child('AMAZINGNEWDATA') -- two ways of writing the same thing
 			.push(this.state.newData);
