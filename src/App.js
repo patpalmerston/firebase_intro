@@ -30,10 +30,10 @@ class App extends Component {
 
 	handleSubmit(event) {
 		event.preventDefault();
-		database
-			.ref()
-			.child('AMAZINGNEWDATA')
-			.set(this.state.newData);
+		database.ref('/AMAZINGNEWDATA')
+			// .ref()
+			// .child('AMAZINGNEWDATA') -- two ways of writing the same thing
+			.push(this.state.newData);
 	}
 
 	render() {
