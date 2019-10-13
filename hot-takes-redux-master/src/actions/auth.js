@@ -1,4 +1,5 @@
 import { auth, googleAuthProvider } from '../firebase';
+import { addUser } from './users';
 
 export const signIn = () => {
 	return dispatch => {
@@ -6,6 +7,7 @@ export const signIn = () => {
 
 		auth.signInWithPopup(googleAuthProvider).then(({ user }) => {
 			dispatch(signedIn(user));
+			dispatch(addUser(user));
 		});
 	};
 };
